@@ -15,7 +15,7 @@ const config: Config = {
       xl: "1440px",
     },
     fontFamily: {
-      sans: ["Graphik", "sans-serif"],
+      sans: ["Kumbh Sans", "sans-serif"],
       serif: ["Merriweather", "serif"],
     },
     extend: {

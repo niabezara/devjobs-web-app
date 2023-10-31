@@ -24,7 +24,8 @@
     margin-bottom: 10rem;
     position: relative;
     display: flex;
-    background-color: red;
+    background-color: #f4f6f8;
+    opacity: 1;
     align-items: center;
   }
 }
