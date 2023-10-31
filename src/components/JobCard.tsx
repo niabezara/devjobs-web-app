@@ -5,8 +5,14 @@ export default function JobCard() {
   return (
     <div>
       {JobData.map((job) => (
-        <article className="bg-white flex flex-col mt-9 p-8 rounded-md gap-3">
-          <div className="flex items-center">
+        <article className="bg-white flex flex-col mt-9 p-8 rounded-md gap-3.5 relative">
+          <div
+            className="h-[50px] w-[50px] flex items-center justify-center rounded-[15px] absolute top-[-23px]"
+            style={{ backgroundColor: job.logoBackground }}
+          >
+            <img src={job.logo} alt="" />
+          </div>
+          <div className="flex items-center mt-3">
             <p className="text-sm after:content-['.'] after:p-2 after:text-center text-[#6e8098]">
               {job.postedAt}
             </p>

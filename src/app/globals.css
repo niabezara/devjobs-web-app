@@ -21,7 +21,7 @@
   }
   .Main {
     flex-direction: column;
-    margin-bottom: 10rem;
+    /* margin-bottom: 10rem; */
     position: relative;
     display: flex;
     background-color: #f4f6f8;
