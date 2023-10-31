@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Filter() {
   return (
-    <div className="bg-white rounded-lg h-[80px] mt-[-3rem] px-4 w-[95%]">
-      <form action="" className="flex items-center h-full">
+    <div className="bg-white rounded-lg h-[80px] mt-[-3rem] px-4 w-[95%] dark-mode:bg-black">
+      <form action="" className="flex items-center h-full justify-between">
         <div className="h-full">
           <input
             className="h-full w-[18ch]"

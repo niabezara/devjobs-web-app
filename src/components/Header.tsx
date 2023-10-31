@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Switch from "react-switch";
 
 export default function Header() {
