@@ -3,16 +3,14 @@ import React, { useState } from "react";
 import JobData from "../../public/assets/data.json";
 import { useDispatch, useSelector } from "react-redux";
 import { loadMore } from "@/Redux/features/loadSlice";
+import { RootState } from "@/Redux/store";
 
 export default function JobCard() {
-  const [visible, setvisible] = useState(JobData.slice(0, 9));
+  const dispatch = useDispatch();
+  const visible = useSelector((state: RootState) => state.load.visible);
+
   const handler = () => {
-    const newArrow = [...visible];
-    const load = newArrow.push(
-      ...JobData.slice(newArrow.length, newArrow.length + 9)
-    );
-    setvisible(newArrow);
-    console.log(newArrow.length);
+    dispatch(loadMore());
   };
 
   return (

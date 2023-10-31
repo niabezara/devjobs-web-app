@@ -1,24 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { JobListing } from "../../types";
-import data from "../../../public/assets/data.json";
+import JobData from "../../../public/assets/data.json";
 
 export interface vacancyList {
-  data: JobListing[];
-  visibleJobs: number;
+  visible: JobListing[];
 }
 
 const initialState: vacancyList = {
-  data: [],
-  visibleJobs: 9,
+  visible: JobData.slice(0, 9),
 };
 
 export const loadSlice = createSlice({
   name: "load",
   initialState,
   reducers: {
-    loadMore: (state: vacancyList) => {
-      state.visibleJobs += 9;
+    loadMore: (state) => {
+      const newVisible = [...state.visible];
+      const startIndex = newVisible.length;
+      const endIndex = startIndex + 4;
+      newVisible.push(...JobData.slice(startIndex, endIndex));
+      state.visible = newVisible;
     },
   },
 });
