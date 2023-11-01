@@ -34,6 +34,9 @@ body {
 
     opacity: 1;
     align-items: center;
+    @screen md {
+      margin: 2rem;
+    }
   }
   .icons {
     display: none;
