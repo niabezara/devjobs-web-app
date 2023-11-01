@@ -14,7 +14,7 @@ export default function JobCard() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full flex items-center flex-col">
       <div className="w-full items-center flex flex-col justify-center md:grid md:grid-cols-2 gap-4">
         {visible.map((job: any) => (
           <article
