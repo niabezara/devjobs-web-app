@@ -5,38 +5,50 @@ import JobData from "../../../public/assets/data.json";
 
 export interface vacancyList {
   data: JobListing[];
-  filteredData: Array<JobListing>;
+  checked: boolean;
 }
 
 const initialState: vacancyList = {
   data: JobData,
-  filteredData: [],
+  checked: false,
 };
 
 export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    setJobs: (state, action) => {
-      return {
-        ...state,
-        data: action.payload,
-      };
-    },
-    setFilterTerm: (state, action) => {
-      const searchTerm = action.payload;
-      if (searchTerm.trim() === "") {
-        state.filteredData = state.data;
+    setFilter: (state, action: PayloadAction<string>) => {
+      const searchInput = action.payload;
+      if (searchInput === "") {
+        state.data = JobData;
       } else {
-        state.filteredData = state.data.filter((job) =>
-          job.company.includes(searchTerm)
+        state.data = state.data.filter((job) =>
+          job.position.toLowerCase().includes(searchInput.toLowerCase())
         );
+      }
+    },
+    setFilterLocation: (state, action: PayloadAction<string>) => {
+      const locationSearch = action.payload;
+      if (locationSearch === "") {
+        state.data = JobData;
+      } else {
+        state.data = state.data.filter((job) =>
+          job.location.toLowerCase().includes(locationSearch.toLowerCase())
+        );
+      }
+    },
+    toggleFullTimeFilter: (state) => {
+      state.checked = !state.checked;
+      if (state.checked) {
+        state.data = state.data.filter((job) => job.contract === "Full Time");
+      } else {
+        state.data = JobData;
       }
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setJobs, setFilterTerm } = filterSlice.actions;
-
+export const { setFilter, setFilterLocation, toggleFullTimeFilter } =
+  filterSlice.actions;
 export default filterSlice.reducer;

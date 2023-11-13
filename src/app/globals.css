@@ -22,8 +22,12 @@ body {
     align-items: center;
     position: relative;
     padding: 0 2rem 0 2rem;
+
     @screen md {
       background-image: url("/assets/tablet/bg-pattern-header.svg");
+    }
+    @screen lg {
+      padding: 0 4rem 0 4rem;
     }
   }
   .Main {

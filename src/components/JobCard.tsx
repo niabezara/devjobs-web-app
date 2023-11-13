@@ -1,22 +1,27 @@
 "use client";
-import React, { useState } from "react";
-import JobData from "../../public/assets/data.json";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadMore } from "@/Redux/features/loadSlice";
 import { RootState } from "@/Redux/store";
+import jobDataType from "../types";
 
 export default function JobCard() {
   const dispatch = useDispatch();
   const visible = useSelector((state: RootState) => state.load.visible);
+  const filterData = useSelector((state: RootState) => state.filter.data);
 
-  const handler = () => {
+  const filteredJobs = useMemo(() => {
+    return filterData.slice(0, visible.length);
+  }, [filterData, visible]);
+
+  const handleLoadMore = () => {
     dispatch(loadMore());
   };
 
   return (
-    <div className="w-full flex items-center flex-col">
-      <div className="w-full items-center flex flex-col justify-center md:grid md:grid-cols-2 gap-4">
-        {visible.map((job: any) => (
+    <div className="w-full flex items-center flex-col lg:max-w-5xl">
+      <div className="w-full items-center flex flex-col justify-center md:grid md:grid-cols-2 gap-4 lg:grid-cols-3">
+        {filteredJobs.map((job: any) => (
           <article
             key={job.id}
             className="bg-white dark:bg-[#19202D] h-[calc(100%-3.5rem)] flex flex-col mt-9 p-11 rounded-md gap-3.5 relative w-full"
@@ -42,7 +47,7 @@ export default function JobCard() {
         ))}
       </div>
       <button
-        onClick={handler}
+        onClick={handleLoadMore}
         className="bg-[#5964e0] text-white px-6 py-3 rounded-lg mt-8 mb-10 font-bold"
       >
         Load More
